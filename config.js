@@ -1,5 +1,6 @@
 const cassandra = require('cassandra-driver')
 const DefaultTableMappings = cassandra.mapping.DefaultTableMappings
+const mappings = new DefaultTableMappings
 
 /** globally shared configuration values **/
 
@@ -20,9 +21,9 @@ const password = "stuff_password"
 // for complete information on how to use the mapper in Node.js
 const mapper_model = {
   models: {
-    'users':        { tables: ['users'], keyspace, mappings: new DefaultTableMappings },
-    'user_devices': { tables: ['user_devices'], keyspace, mappings: new DefaultTableMappings },
-    'activity_log': { tables: ['activity_log'], keyspace, mappings: new DefaultTableMappings }
+    'users':        { tables: ['users'], keyspace, mappings },
+    'user_devices': { tables: ['user_devices'], keyspace, mappings },
+    'activity_log': { tables: ['activity_log'], keyspace, mappings }
   }
 }
 

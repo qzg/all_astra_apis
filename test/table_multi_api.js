@@ -64,7 +64,7 @@ describe('GraphQL user CRUD functions', function(){
 
 // REST FUNCTIONS
 describe('REST user CRUD functions', function(){
-    this.timeout( 5000 )
+    this.timeout( 10000 )
     describe('#rest_create()', function(){
         it('should create a user through REST API', async function(){
             const result = await users.rest_create( rest_user )
@@ -116,41 +116,41 @@ describe('CQL user CRUD functions', function(){
     describe('#cql_create()', function(){
         it('should create a user through CQL API', async function(){
             const result = await users.cql_create( cql_user )
-            expect( result ).to.have.property('length') }) // need a better success test but I'm not sure what property to watch for other than just not throwing an exception
+            expect( result.wasApplied() ).to.be.true })
 
         it('should create a user_device through CQL API', async function(){
             const result = await user_devices.cql_create( cql_devices[0] )
-            expect( result ).to.have.property('length') }) // need a better success test but I'm not sure what property to watch for other than just not throwing an exception
+            expect( result.wasApplied() ).to.be.true })
     })
 
     describe('#cql_read()', function(){
         it('should read a user through the CQL API', async function(){
             const result = await users.cql_read( {user_id: cql_user.user_id} )
-            expect( result ).to.have.property('length') })
+            expect( result.rows ).to.have.property('length') })
 
         it('should read a user_device through the CQL API', async function(){
             const result = await user_devices.cql_read( {user_id: cql_devices[0].user_id, device_name: cql_devices[0].device_name } )
-            expect( result ).to.have.property('length') })
+            expect( result.rows ).to.have.property('length') })
     })
 
     describe('#cql_update()', function(){
         it('should update a user through the CQL API', async function(){
             const result = await users.cql_update( {city:"New York City, NY" }, {user_id: cql_user.user_id} )
-            expect( result ).to.have.property('length') })
+            expect( result.wasApplied() ).to.be.true })
 
         it('should update a user_device through the CQL API', async function(){
             const result = await user_devices.cql_update( { device_location:"35.130881, -95.472064" }, {user_id: cql_devices[0].user_id, device_name: cql_devices[0].device_name })
-            expect( result ).to.have.property('length') })
+            expect( result.wasApplied() ).to.be.true })
     })
 
     describe('#cql_delete()', function(){
         it('should delete a user through the CQL API', async function(){
             const result = await users.cql_delete( {user_id: cql_user.user_id} )
-            expect( result ).to.have.property('length') })
+            expect( result.wasApplied() ).to.be.true })
 
         it('should delete a user_device through the CQL API', async function(){
             const result = await user_devices.cql_delete( {user_id: cql_devices[0].user_id, device_name: cql_devices[0].device_name } )
-            expect( result ).to.have.property('length') })
+            expect( result.wasApplied() ).to.be.true })
     })
 })
 
