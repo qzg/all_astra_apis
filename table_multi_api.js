@@ -71,7 +71,7 @@ class TableMultiAPI {
     // we need the same number of "?" as there are K/V pairs; this should create "?,?,?,?" if there are four pairs
     const placeholders_string = Object.entries( props ).map((_) => "?").join(",")
     const query = `INSERT INTO ${this.tablename} (${fields_string}) VALUES (${placeholders_string})`
-    return await client.execute( query, Object.values( props ))
+    return await client.execute( query, Object.values( props ), {prepare: true})
   }
 
   // CQL Mapper
@@ -142,7 +142,7 @@ class TableMultiAPI {
     const query_params = props_to_params( primary_key )
     const query_string = Object.keys( query_params ).join( " AND " )
     const query = `SELECT * FROM ${this.tablename} WHERE ${query_string}` 
-    return await client.execute( query, Object.values( query_params ))
+    return await client.execute( query, Object.values( query_params ), {prepare: true})
   }
   
 
@@ -202,7 +202,7 @@ class TableMultiAPI {
     const update_params = props_to_params( props )
     const update_string = Object.keys( update_params ).join( ", " )
     const query = `UPDATE ${this.tablename} SET ${update_string} WHERE ${query_string}`
-    return await client.execute( query, Object.values( query_params ).concat( Object.values(update_params)))
+    return await client.execute( query, Object.values( query_params ).concat( Object.values(update_params)), {prepare: true})
   }
 
   
@@ -243,7 +243,7 @@ class TableMultiAPI {
     const query_params = props_to_params( primary_key )
     const query_string = Object.keys( query_params ).join( " AND " )
     const query = `DELETE FROM ${this.tablename} WHERE ${query_string}`
-    return await client.execute(query, Object.values( query_params ))
+    return await client.execute(query, Object.values( query_params ), {prepare: true})
   }
   
 
@@ -252,13 +252,9 @@ class TableMultiAPI {
   async cqlm_delete( primary_key ){
     return await this.modelmap.remove( primary_key )
   }
-
 }
 
 
-
-const users = {
+module.exports = {
   TableMultiAPI
 }
-
-module.exports = users

@@ -3,14 +3,14 @@ const got = require('got')
 const { v4: uuidv4, v1: uuidv1 } = require( "uuid" )
 const camelCase = require('camelcase')
 const cassandra = require('cassandra-driver')
-const TableMapper = require('./TableMapper')
+const KeyspaceMapper = require('./KeyspaceMapper')
 const Client = cassandra.Client
 const Mapper = cassandra.mapping.Mapper
 const client = new Client({ cloud:{ secureConnectBundle:secure_bundle_path},
                             credentials: {username, password},
                             keyspace})
 const mapper = new Mapper(client, mapper_model )
-const tablemapper = new TableMapper( client, keyspace )
+const keyspacemapper = new KeyspaceMapper( client, keyspace )
 
 
 
@@ -185,5 +185,5 @@ function make_special_json( obj ){
 }
 
 
-const utility = { camelcase_props, make_special_json, props_to_columns, props_to_params, check_required_field, handleHTTPError, get, post, authenticate, client, mapper }
+const utility = { camelcase_props, make_special_json, props_to_columns, props_to_params, check_required_field, handleHTTPError, get, post, authenticate, client, mapper, keyspacemapper }
 module.exports = utility
