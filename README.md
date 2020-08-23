@@ -1,11 +1,12 @@
 # Demonstrate All Astra APIs
-This is a reference project showing how you can use the various APIs available in Astra:
+Data in the Astra DBaaS can be accessed using four different APIs (so far).  
 * GraphQL API
 * REST API
 * Cassandra Query Language (CQL) API
 * Mapper API
 
-Contributors: [Kiyu Gabriel](https://github.com/qzg)
+This reference project shows how you can use these APIs from Node.js.
+
 
 ## Project Layout
 The most files are in the root of the project:
@@ -37,3 +38,5 @@ If you'd like to see the tests in action, you'll need a test database.
 ### Prerequisites
 * This requires a recent version of Node.js; I was using v14.7
 * You'll also need an Astra database (can be set up for free)
+
+Contributors: [Kiyu Gabriel](https://github.com/qzg)
