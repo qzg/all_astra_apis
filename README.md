@@ -35,5 +35,5 @@ If you'd like to see the tests in action, you'll need a test database.
 9. In the root of this project, run `npm test` to exercise all the APIs.  
 
 ### Prerequisites
-This requires a recent version of Node.js; I was using v14.7
-An Astra database (can be set up for free)
+* This requires a recent version of Node.js; I was using v14.7
+* You'll also need an Astra database (can be set up for free)
