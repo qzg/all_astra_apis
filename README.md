@@ -1,45 +1,39 @@
 # Demonstrate All Astra APIs
-A short few sentences describing what is the purpose of the example and what the user will learn
+This is a reference project showing how you can use the various APIs available in Astra:
+* GraphQL API
+* REST API
+* Cassandra Query Language (CQL) API
+* Mapper API
 
-e.g.
-This application shows how to use configure your NodeJs application to connect to DDAC/Cassandra/DSE or an Apollo database at runtime.
+Contributors: [Kiyu Gabriel](https://github.com/qzg)
 
-Contributors: A listing of contributors to this repository linked to their github profile
-
-## Objectives
-A list of the top objectives that are being demonstrated by this sample
-
-e.g.
-* To demonstrate how to specify at runtime between a standard (DSE/DDAC/C*) client configuration and an Apollo configuration for the same application.
-  
 ## Project Layout
-A list of key files within this repo and a short 1-2 sentence description of why they are important to the project
+The most files are in the root of the project:
+* table_multi_api.js: examples of CRUD operations using each API
+* schema.cql: example Cassandra schema that works with the tests
+* config.js: your settings
+* utility.js: functions to deal with some of the differences in the way the APIs like their data
+* KeyspaceMapper.js: class that wraps the regular Node.js driver Mapper functionality to create one model per table in the keyspace
+* TableMapper.js: support file for KeyspaceMapper.js
 
-e.g.
-* app.js - The main application file which contains all the logic to switch between the configurations
+There are also test files to illustrate how the examples could be used:
+* test/multi_table_api.js: test the functionality of the table_multi_api.js
+* test/KeyspaceMapper.js: test the functionality of the KeyspaceMapper
+* test/sample_data.js: sample data for table_multi_api.js 
 
-## How this Works
-A description of how this sample works and how it demonstrates the objectives outlined above
 
 ## Setup and Running
+If you'd like to see the tests in action, you'll need a test database.
+1. Create an account at [astra.datastax.com](https://astra.datastax.com)
+2. Set up a database (in the samples, I named the database "stuff")
+3. Set up a keyspace (in the samples, I also named the keyspace "stuff")
+4. Set up a user and password (in the samples, I used "stuff_user" and "stuff_password" - you should use something more secure)
+5. Put all of this information into your config.js
+6. Download the secure connect bundle from the summary page after your database has launched.  You'll need this later. Save this file in the root of this project and update the config.js file with the path to it.
+7. Also grab the REST API URL from the Summary page - put basE of this URL in the config.js.  The base of the REST API URL and the GraphQL API URL are the same, just trim off the "/api/rest" part.  
+8. Use the CQL Console to create the tables defined in the schema.cql file
+9. In the root of this project, run `npm test` to exercise all the APIs.  
 
 ### Prerequisites
-The prerequisites required for this application to run
-
-e.g.
-* NodeJs version 8
-* A DSE 6.7 Cluster
-* Schema added to the cluster
-
-### Running
-The steps and configuration needed to run and build this application
-
-e.g.
-To run this application use the following command:
-
-`node app.js`
-
-This will produce the following output:
-
-`Connected to cluster with 3 host(s) ["XX.XX.XX.136:9042","XX.XX.XX.137:9042","XX.XX.XX.138:9042"]`
-
+This requires a recent version of Node.js; I was using v14.7
+An Astra database (can be set up for free)
