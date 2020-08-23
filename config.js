@@ -4,12 +4,10 @@ const mappings = new DefaultTableMappings
 
 /** globally shared configuration values **/
 
-//const baseURL = "https://your-db-id-your-region.apps.astra.datastax.com" // something like: "https://38adb487-e5ae-4aa6-9549-f3c9eb189df5-us-east1.apps.astra.datastax.com"
 const baseURL = "https://38adb487-e5ae-4aa6-9549-f3c9eb189df5-us-east1.apps.astra.datastax.com"
 const restURL = baseURL + "/api/rest"
 const gqlURL =  baseURL + "/api/graphql"
-const secure_bundle_path = "/Users/kiyu.gabriel/Development/all_astra_apis/secure-connect-stuff.zip"
-//const secure_bundle_path = "/Full/Path/to/your/secure-connect-bundle.zip"  // something like: "/Users/kiyu.gabriel/all_astra_apis/secure-connect-stuff.zip"
+const secure_bundle_path = "/Users/your.account/Development/all_astra_apis/secure-connect-stuff.zip"
 
 const keyspace = "stuff"
 const username = "stuff_user"
